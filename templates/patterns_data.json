@@ -1,0 +1,468 @@
+{
+	"categories": [
+		 {
+			  "id": "time_patterns",
+			  "title": {
+					"en": "Time Organization Patterns",
+					"ru": "Паттерны организации времени"
+			  },
+			  "subcategories": [
+					{
+						 "id": "time_deficit_abundance",
+						 "title": {
+							  "en": "Time Deficit / Abundance",
+							  "ru": "Дефицит времени / Изобилие времени"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Time Deficit",
+										 "ru": "Дефицит времени"
+									},
+									"mentions": 40
+							  },
+							  {
+									"pattern": {
+										 "en": "Time Abundance",
+										 "ru": "Изобилие времени"
+									},
+									"mentions": 10
+							  }
+						 ]
+					},
+					{
+						 "id": "monochronic_polychronic",
+						 "title": {
+							  "en": "Monochronic / Polychronic",
+							  "ru": "Монохронность / Полихронность"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Monochronic",
+										 "ru": "Монохронность"
+									},
+									"mentions": 20
+							  },
+							  {
+									"pattern": {
+										 "en": "Polychronic",
+										 "ru": "Полихронность"
+									},
+									"mentions": 10
+							  }
+						 ]
+					},
+					{
+						 "id": "past_present_future",
+						 "title": {
+							  "en": "Past / Present / Future",
+							  "ru": "Прошлое / Настоящее / Будущее"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Past",
+										 "ru": "Прошлое"
+									},
+									"mentions": 2
+							  },
+							  {
+									"pattern": {
+										 "en": "Present",
+										 "ru": "Настоящее"
+									},
+									"mentions": 6
+							  },
+							  {
+									"pattern": {
+										 "en": "Future",
+										 "ru": "Будущее"
+									},
+									"mentions": 8
+							  }
+						 ]
+					},
+					{
+						 "id": "short_term_long_term_strategy",
+						 "title": {
+							  "en": "Short-Term Strategy / Long-Term Strategy",
+							  "ru": "Краткосрочная стратегия / Долгосрочная стратегия"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Short-Term Strategy",
+										 "ru": "Краткосрочная стратегия"
+									},
+									"mentions": 1
+							  },
+							  {
+									"pattern": {
+										 "en": "Long-Term Strategy",
+										 "ru": "Долгосрочная стратегия"
+									},
+									"mentions": 14
+							  }
+						 ]
+					}
+			  ]
+		 },
+		 {
+			  "id": "behavior_patterns",
+			  "title": {
+					"en": "Behavior Patterns",
+					"ru": "Паттерны поведения"
+			  },
+			  "subcategories": [
+					{
+						 "id": "control_harmony_acceptance",
+						 "title": {
+							  "en": "Control / Harmony / Acceptance",
+							  "ru": "Контроль / Гармония / Смирение"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Control",
+										 "ru": "Контроль"
+									},
+									"mentions": 9
+							  },
+							  {
+									"pattern": {
+										 "en": "Harmony",
+										 "ru": "Гармония"
+									},
+									"mentions": 15
+							  },
+							  {
+									"pattern": {
+										 "en": "Acceptance",
+										 "ru": "Смирение"
+									},
+									"mentions": 4
+							  }
+						 ]
+					},
+					{
+						 "id": "protect_resources_share_resources",
+						 "title": {
+							  "en": "Protect Resources / Share Resources",
+							  "ru": "Защищать ресурсы / Делиться ресурсами"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Protect Resources",
+										 "ru": "Защищать ресурсы"
+									},
+									"mentions": 18
+							  },
+							  {
+									"pattern": {
+										 "en": "Share Resources",
+										 "ru": "Делиться ресурсами"
+									},
+									"mentions": 5
+							  }
+						 ]
+					},
+					{
+						 "id": "being_doing",
+						 "title": {
+							  "en": "Being / Doing",
+							  "ru": "Быть / Делать"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Being",
+										 "ru": "Быть"
+									},
+									"mentions": 7
+							  },
+							  {
+									"pattern": {
+										 "en": "Doing",
+										 "ru": "Делать"
+									},
+									"mentions": 11
+							  }
+						 ]
+					},
+					{
+						 "id": "individualism_collectivism",
+						 "title": {
+							  "en": "Individualism / Collectivism",
+							  "ru": "Индивидуализм / Коллективизм"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Individualism",
+										 "ru": "Индивидуализм"
+									},
+									"mentions": 4
+							  },
+							  {
+									"pattern": {
+										 "en": "Collectivism",
+										 "ru": "Коллективизм"
+									},
+									"mentions": 6
+							  }
+						 ]
+					},
+					{
+						 "id": "stability_change",
+						 "title": {
+							  "en": "Stability / Change",
+							  "ru": "Стабильность / Изменения"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Stability",
+										 "ru": "Стабильность"
+									},
+									"mentions": 10
+							  },
+							  {
+									"pattern": {
+										 "en": "Change",
+										 "ru": "Изменения"
+									},
+									"mentions": 2
+							  }
+						 ]
+					},
+					{
+						 "id": "competition_collaboration",
+						 "title": {
+							  "en": "Competition / Collaboration",
+							  "ru": "Конкуренция / Сотрудничество"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Competition",
+										 "ru": "Конкуренция"
+									},
+									"mentions": 1
+							  },
+							  {
+									"pattern": {
+										 "en": "Collaboration",
+										 "ru": "Сотрудничество"
+									},
+									"mentions": 20
+							  }
+						 ]
+					}
+			  ]
+		 },
+		 {
+			  "id": "communication_patterns",
+			  "title": {
+					"en": "Communication Patterns",
+					"ru": "Паттерны коммуникации"
+			  },
+			  "subcategories": [
+					{
+						 "id": "high_context_low_context",
+						 "title": {
+							  "en": "High Context / Low Context",
+							  "ru": "Высокий контекст / Низкий контекст"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "High Context",
+										 "ru": "Высокий контекст"
+									},
+									"mentions": 7
+							  },
+							  {
+									"pattern": {
+										 "en": "Low Context",
+										 "ru": "Низкий контекст"
+									},
+									"mentions": 9
+							  }
+						 ]
+					},
+					{
+						 "id": "direct_indirect_communication",
+						 "title": {
+							  "en": "Direct Communication / Indirect Communication",
+							  "ru": "Прямая коммуникация / Непрямая коммуникация"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Direct Communication",
+										 "ru": "Прямая коммуникация"
+									},
+									"mentions": 3
+							  },
+							  {
+									"pattern": {
+										 "en": "Indirect Communication",
+										 "ru": "Непрямая коммуникация"
+									},
+									"mentions": 15
+							  }
+						 ]
+					},
+					{
+						 "id": "emotionality_neutrality",
+						 "title": {
+							  "en": "Emotionality / Neutrality",
+							  "ru": "Эмоциональность / Нейтральность"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Emotionality",
+										 "ru": "Эмоциональность"
+									},
+									"mentions": 10
+							  },
+							  {
+									"pattern": {
+										 "en": "Neutrality",
+										 "ru": "Нейтральность"
+									},
+									"mentions": 5
+							  }
+						 ]
+					},
+					{
+						 "id": "formality_informality",
+						 "title": {
+							  "en": "Formality / Informality",
+							  "ru": "Формальность / Неформальность"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Formality",
+										 "ru": "Формальность"
+									},
+									"mentions": 8
+							  },
+							  {
+									"pattern": {
+										 "en": "Informality",
+										 "ru": "Неформальность"
+									},
+									"mentions": 12
+							  }
+						 ]
+					}
+			  ]
+		 },
+		 {
+			  "id": "thinking_patterns",
+			  "title": {
+					"en": "Thinking Patterns",
+					"ru": "Паттерны мышления"
+			  },
+			  "subcategories": [
+					{
+						 "id": "deductive_reasoning_inductive_reasoning",
+						 "title": {
+							  "en": "Deductive Reasoning / Inductive Reasoning",
+							  "ru": "Дедуктивное мышление / Индуктивное мышление"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Deductive Reasoning",
+										 "ru": "Дедуктивное мышление"
+									},
+									"mentions": 16
+							  },
+							  {
+									"pattern": {
+										 "en": "Inductive Reasoning",
+										 "ru": "Индуктивное мышление"
+									},
+									"mentions": 10
+							  }
+						 ]
+					},
+					{
+						 "id": "analytical_thinking_systematic_thinking",
+						 "title": {
+							  "en": "Analytical Thinking / Systematic Thinking",
+							  "ru": "Аналитичное мышление / Системное мышление"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Analytical Thinking",
+										 "ru": "Аналитичное мышление"
+									},
+									"mentions": 4
+							  },
+							  {
+									"pattern": {
+										 "en": "Systematic Thinking",
+										 "ru": "Системное мышление"
+									},
+									"mentions": 2
+							  }
+						 ]
+					},
+					{
+						 "id": "field_dependence_field_independence",
+						 "title": {
+							  "en": "Field Dependence / Field Independence",
+							  "ru": "Полезависимость / Поленезависимость"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Field Dependence",
+										 "ru": "Полезависимость"
+									},
+									"mentions": 9
+							  },
+							  {
+									"pattern": {
+										 "en": "Field Independence",
+										 "ru": "Поленезависимость"
+									},
+									"mentions": 14
+							  }
+						 ]
+					},
+					{
+						 "id": "reflectivity_impulsivity",
+						 "title": {
+							  "en": "Reflectivity / Impulsivity",
+							  "ru": "Рефлексивность / Импульсивность"
+						 },
+						 "patterns": [
+							  {
+									"pattern": {
+										 "en": "Reflectivity",
+										 "ru": "Рефлексивность"
+									},
+									"mentions": 0
+							  },
+							  {
+									"pattern": {
+										 "en": "Impulsivity",
+										 "ru": "Импульсивность"
+									},
+									"mentions": 0
+							  }
+						 ]
+					}
+			  ]
+		 }
+	]
+}

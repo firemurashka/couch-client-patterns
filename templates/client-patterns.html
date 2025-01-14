@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Паттерны клиента</title>
+    <meta charset="UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="../static/css/style_couch.min.css?_v=20230505153921" />
+    <link rel="stylesheet" href="../static/css/style_couch.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700,800,900&display=swap&subset=cyrillic-ext&_v=20230505153921"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,500,700&display=swap&subset=cyrillic-ext&_v=20230505153921" rel="stylesheet" />
+
+    <script>
+      async function getSessionStatus(id) {
+        let data;
+        await fetch(window.location.origin + "/session_status/" + id)
+          .then((response) => response.text())
+          .then((text) => (data = text))
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+        virtualSetSessionStatus(id, data);
+      }
+      async function setSessionStatus(id, status) {
+        await fetch(window.location.origin + "/session_status/" + id, {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain",
+          },
+          body: status,
+        });
+        virtualSetSessionStatus(id, status);
+      }
+      function virtualSetSessionStatus(id, status) {
+        let inner;
+        switch (status) {
+          case "approved":
+            inner = '<img src="../static/img/icons/state/circle-of-circles.svg" alt="">' + '<div class="couch-session__sublist-text">Подтверждена</div>';
+            document.getElementById("couch-session-link_" + id).style.visibility = "visible";
+            break;
+          case "not approved":
+            inner = '<img src="../static/img/icons/state/circle-emphasis.svg" alt=""><div class="couch-session__sublist-text">' + "Ждёт подтверждения</div>";
+            document.getElementById("couch-session-link_" + id).style.visibility = "hidden";
+            break;
+          case "in progress":
+            inner =
+              '<img src="../static/img/icons/state/pause.svg" alt="">\n' +
+              '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="couch-session__sublist-text">\n' +
+              "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tВ процессе\n" +
+              "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>";
+            document.getElementById("couch-session-link_" + id).style.visibility = "hidden";
+            break;
+          case "done":
+            inner =
+              '<img src="../static/img/icons/state/confirmed.svg" alt="">\n' +
+              '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="couch-session__sublist-text">\n' +
+              "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tПроведена\n" +
+              "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>";
+            document.getElementById("couch-session-link_" + id).style.visibility = "hidden";
+            break;
+          case "delayed":
+            inner =
+              '<img src="../static/img/icons/state/arrow-repeat.svg" alt="">\n' +
+              '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="couch-session__sublist-text">\n' +
+              "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tПеренос\n" +
+              "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>";
+            document.getElementById("couch-session-link_" + id).style.visibility = "hidden";
+            break;
+          case "cancelled":
+            inner =
+              '<img src="../static/img/icons/state/stop.svg" alt="">\n' +
+              '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="couch-session__sublist-text">\n' +
+              "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tОтклонена\n" +
+              "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>";
+            document.getElementById("couch-session-link_" + id).style.visibility = "hidden";
+            break;
+          case "MLG formation":
+            inner =
+              '<img src="../static/img/icons/state/map.svg" alt="">\n' +
+              '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="couch-session__sublist-text">\n' +
+              "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tФормирование КЖО\n" +
+              "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>";
+            document.getElementById("couch-session-link_" + id).style.visibility = "hidden";
+            break;
+          case "processed":
+            inner =
+              '<img src="../static/img/icons/state/check-person.svg" alt="">\n' +
+              '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="couch-session__sublist-text">\n' +
+              "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tОбработана\n" +
+              "\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>";
+            document.getElementById("couch-session-link_" + id).style.visibility = "hidden";
+            break;
+          default:
+            inner = "ошибка";
+        }
+        document.getElementById("couch-session-button_" + id).innerHTML = inner;
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__container">
+          <div class="header__body">
+            <a href="/couch" class="header__logo">
+              <img src="../static/img/header/logo-header.svg" alt="" />
+            </a>
+            <div class="header_menu menu" data-da=".header__profile,991.98">
+              <button type="button" class="menu__icon icon-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <nav class="menu__body">
+                <ul class="menu__list">
+                  <li class="menu__item menu__item_logo">
+                    <a href="/couch" class="header__logo">
+                      <img src="../static/img/header/logo-header.svg" alt="" />
+                    </a>
+                  </li>
+                  <li class="menu__item">
+                    <a href="/couch" class="menu__link">Главная</a>
+                  </li>
+
+                  <li class="menu__item">
+                    <a href="/my_clients" class="menu__link">Мои клиенты</a>
+                  </li>
+                  <li class="menu__item">
+                    <a href="/my_articles" class="menu__link">Мои статьи</a>
+                  </li>
+                  <li class="menu__item">
+                    <a href="/my_news" class="menu__link">Мои новости</a>
+                  </li>
+                  <li class="menu__item">
+                    <a href="/my_messages" class="menu__link">Мои сообщения</a>
+                  </li>
+                  <li class="menu__item">
+                    <a href="/my_organizer" class="menu__link">Мой органайзер</a>
+                  </li>
+                  <li class="menu__item">
+                    <a href="/my_profile" class="menu__link">Мой профиль</a>
+                  </li>
+                  <li class="menu__item menu__item_exit">
+                    <a href="/login" class="menu__link">Выйти</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="header__profile">
+              <a href="#" data-popup="#popup-search" class="header__button _icon-search"></a>
+              <a class="header__bell _icon-bell" href=""></a>
+              <div class="header__image-box">
+                <a href="/my_profile" class="header__image">
+                  <span class="header__word">К</span>
+                  <span class="header__word_hidden">Изменить фото</span>
+                </a>
+              </div>
+              <a class="header__exit _icon-exit" href="/login"></a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="page page-profile-client page-subpage page-client-patterns">
+        <section class="client-subpage">
+          <div class="client-subpage__container">
+            <div class="client-subpage__block">
+              <div class="client-subpage__top">
+                <div class="client-subpage__top-profile">
+                  <a href="/client_page" class="client-subpage__profile profile-client _shadow">
+                    <div class="profile-client__image">
+                      <picture
+                        ><source id="webp" srcset="../static/img/client/client02.webp" type="image/webp" />
+                        <img id="jpg" src="../static/img/client/client02.jpg" alt=""
+                      /></picture>
+                      <script>
+                        var img_webp = "../static/img/client/client03.webp";
+                        var img_jpg = "../static/img/client/client03.jpg";
+                        var gender = {{data[0][2]}}
+                        if (gender == "женский") {(img_webp = "../static/img/client/client01.webp"); (img_jpg = "../static/img/client/client01.jpg");} else {(img_webp = "../static/img/client/client02.webp"); (img_jpg = "../static/img/client/client02.jpg");}
+                        document.getElementById("webp").srcset = img_webp;
+                        document.getElementById("jpg").srcset = img_jpg;
+                      </script>
+                    </div>
+                    <div class="profile-client__block">
+                      <div class="profile-client__subtitle">Клиент</div>
+                      <div class="profile-client__title">{{data[0][0]+ " " + data[0][2]}}</div>
+                    </div>
+                  </a>
+                  <!-- расписание сессии -->
+                  <div class="client-page__session session-client">
+                    <div class="session-client__text">Cессия</div>
+                    <div class="session-client__block-time">
+                      <div class="session-client__top">
+                        <div class="session-client__data">{{session[0][0]}}</div>
+                        <div class="session-client__time">{{session[0][1]}}</div>
+                      </div>
+                      <div data-spollers data-one-spoller class="session-client__status">
+                        <div class="session-client__accordion">
+                          <script>
+                            getSessionStatus("{{session[0][2]}}");
+                          </script>
+                          <button
+                            data-spoller-close
+                            id="couch-session-button_{{session[0][2]}}"
+                            class="couch-session__button couch-session__sublist-item_01"
+                            type="button"
+                            data-spoller
+                          >
+                            <img src="../static/img/icons/state/circle-emphasis.svg" alt="" />
+                            Не назначена
+                          </button>
+                          <div class="couch-session__sublist">
+                            <!-- Ждёт подтверждения -->
+                            <button
+                              data-spoller-close
+                              onclick="setSessionStatus('{{session[0][2]}}', 'approved')"
+                              class="couch-session__sublist-item couch-session__sublist-item_01"
+                            >
+                              <img src="../static/img/icons/state/circle-of-circles.svg" alt="" />
+                              <div class="couch-session__sublist-text">Подтверждена</div>
+                            </button>
+                            <button
+                              data-spoller-close
+                              onclick="setSessionStatus('{{session[0][2]}}', 'not approved')"
+                              class="couch-session__sublist-item couch-session__sublist-item_01"
+                            >
+                              <img src="../static/img/icons/state/circle-emphasis.svg" alt="" />
+                              <div class="couch-session__sublist-text">Ждёт подтверждения</div>
+                            </button>
+                            <button
+                              data-spoller-close
+                              onclick="setSessionStatus('{{session[0][2]}}', 'in progress')"
+                              href=""
+                              class="couch-session__sublist-item couch-session__sublist-item_02"
+                            >
+                              <img src="../static/img/icons/state/pause.svg" alt="" />
+                              <div class="couch-session__sublist-text">В процессе</div>
+                            </button>
+                            <button
+                              data-spoller-close
+                              onclick="setSessionStatus('{{session[0][2]}}', 'done')"
+                              class="couch-session__sublist-item couch-session__sublist-item_03"
+                            >
+                              <img src="../static/img/icons/state/confirmed.svg" alt="" />
+                              <div class="couch-session__sublist-text">Проведена</div>
+                            </button>
+                            <button
+                              data-spoller-close
+                              onclick="setSessionStatus('{{session[0][2]}}', 'delayed')"
+                              class="couch-session__sublist-item couch-session__sublist-item_04"
+                            >
+                              <img src="../static/img/icons/state/arrow-repeat.svg" alt="" />
+                              <div class="couch-session__sublist-text">Перенесена</div>
+                            </button>
+                            <button
+                              data-spoller-close
+                              onclick="setSessionStatus('{{session[0][2]}}', 'cancelled')"
+                              class="couch-session__sublist-item couch-session__sublist-item_05"
+                            >
+                              <img src="../static/img/icons/state/stop.svg" alt="" />
+                              <div class="couch-session__sublist-text">Отклонена</div>
+                            </button>
+                            <button
+                              data-spoller-close
+                              onclick="setSessionStatus('{{session[0][2]}}', 'MLG formation')"
+                              class="couch-session__sublist-item couch-session__sublist-item_05"
+                            >
+                              <img src="../static/img/icons/state/map.svg" alt="" />
+                              <div class="couch-session__sublist-text">Формирование КЖО</div>
+                            </button>
+                            <button
+                              data-spoller-close
+                              onclick="setSessionStatus('{{session[0][2]}}', 'processed')"
+                              class="couch-session__sublist-item couch-session__sublist-item_05"
+                            >
+                              <img src="../static/img/icons/state/check-person.svg" alt="" />
+                              <div class="couch-session__sublist-text">Обработана</div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="client-subpage__btns">
+                    <a class="client-subpage__btn client-page__btn_plus btn" href="/add_dc">
+                      CheckUp
+                      <img src="../static/img/icons/plus-circle-white.svg" alt="" />
+                    </a>
+                    <a data-href2="/my_organizer" class="client-subpage__btn btn" href="{{ session_link }}">Подключиться к сессии</a>
+                  </div>
+                </div>
+                <div class="client-subpage__menu menu-organizer">
+                  <div class="menu-organizer__body">
+                    <!--<a href="/view_customer_profile" class="menu-organizer__item"> -->
+                    <a href="/client_page" class="menu-organizer__item">
+                      <div class="menu-organizer__content">
+                        <h2 class="menu-organizer__title"><img src="../static/img/person/download.svg" alt="" />Профиль клиента</h2>
+                      </div>
+                      <div class="menu-organizer__arrow _icon-arrow-down"></div>
+                    </a>
+                    <a href="/sessions" class="menu-organizer__item">
+                      <div class="menu-organizer__content">
+                        <h2 class="menu-organizer__title"><img src="../static/img/person/download.svg" alt="" />Сессии</h2>
+                      </div>
+                      <div class="menu-organizer__arrow _icon-arrow-down"></div>
+                    </a>
+                    <!--<a href="/feedback" class="menu-organizer__item"> -->
+                    <a href="/feedback" class="menu-organizer__item">
+                      <div class="menu-organizer__content">
+                        <h2 class="menu-organizer__title"><img src="../static/img/person/download.svg" alt="" />ОС Паттерны</h2>
+                      </div>
+                      <div class="menu-organizer__arrow _icon-arrow-down"></div>
+                    </a>
+                    <a href="/preanalysis" class="menu-organizer__item">
+                      <div class="menu-organizer__content">
+                        <h2 class="menu-organizer__title"><img src="../static/img/person/download.svg" alt="" />ИТР</h2>
+                      </div>
+                      <div class="menu-organizer__arrow _icon-arrow-down"></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="client-subpage__body">
+                <div class="client-subpage__content">
+                  <h1 class="client-subpage__title">Паттерны клиента</h1>
+                  <div class="client-patterns">
+                    <div id="patterns-group">
+                      <div class="loading-indicator">Загрузка...</div>
+                    </div>
+                  </div>
+                  <div id="test-output"></div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="footer__container"></div>
+      </footer>
+    </div>
+    <div id="popup-search" aria-hidden="true" class="popup-search popup">
+      <div class="popup__wrapper">
+        <div class="popup__content">
+          <button data-close type="button" class="popup__close">Закрыть</button>
+          <form action="#" method="get" class="popup__form" autocomplete="off">
+            <input
+              placeholder="Поиск"
+              type="text"
+              name="text"
+              autocapitalize="off"
+              autocomplete="off"
+              autocorrect="off"
+              spellcheck="false"
+              maxlength="255"
+              class="popup__input"
+            />
+            <button class="popup__button btn" type="submit">Найти</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="../static/js/app_couch.min.js?_v=20230505153921"></script>
+    <script src="../static/js/patterns-data.js"></script>
+  </body>
+</html>
